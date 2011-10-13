@@ -13,7 +13,7 @@
      }
   , "views": [
       { "navigationTitle" : "Schedule"
-      , "navigationIcon"  : "images/icons/home.png"
+      , "navigationIcon"  : "images/icons/schedule.png"
       , "uri"             : "html/schedule.html"
       }
     ]
