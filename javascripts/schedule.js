@@ -15,9 +15,12 @@
   function render( data ) {
     var html = "";
     for( var i=0, len=data.length; i < len; i++ ) {
-      html += "<li>" + data[i].summary + "</li>";
+      html += "<li><a href='#'>" + data[i].summary + "</a></li>";
     }
-    $( ".schedule-container" ).html( html );
+    
+    //Need to refresh the listview after we update the HTML
+    $( ".schedule-container" ).html( html )
+                              .listview( "refresh" );
   }
   
 })( jQuery );
