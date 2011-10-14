@@ -6,21 +6,47 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="stylesheet" href="../stylesheets/jquery.mobile-1.0rc1.min.css" />
+    <style>
+      .ui-mobile .ui-page-active {
+        overflow-x: hidden;
+      }
+      
+      .detail-container {
+        padding: 10px;
+      }
+    </style>
     <title>Schedule</title>
     <script type="text/javascript" src="../javascripts/app-cloud-sdk.js"></script>
     <script type="text/javascript" src="../javascripts/jquery.mobile-1.0rc1.min.js"></script>
+    <script type="text/javascript" src="../javascripts/markup.min.js"></script>
     <script type="text/javascript" src="../javascripts/schedule.js"></script>
+    <script type="text/javascript" src="../javascripts/templates.js"></script>
   </head>
 <body>
-  <section data-role="page">
+  
+  <!-- The home page for our template.  A data-role="page" is what tell jQM that this is a div is to be treated as a "page"-->
+  <div data-role="page" id="home">
+    
+    <!-- The data-role="header" tells jQM to style this tag as a header along with its contents. -->
     <header data-role="header">
       <h1>Schedule</h1>
     </header>
     
-    <ul class='schedule-container' data-role="listview">
-      <li>Loading...<li>
-    </ul>
-  
-  </section>
+    <!-- The data-role="listview" tell jQM to apply styling to this "listview" and its contents.  Can be a UL or OL. -->
+    <ul class='schedule-container' data-role="listview"></ul>
+    
+  </div>
+
+  <!-- The details page for our template-->
+  <div data-role="page" id="details">
+    
+    <header data-role="header">
+      <!-- jQM has a suite of icons you can use out of the box.  Additionally, the data-rel tells jQM to treat this link as "back button" -->
+      <a href="#home" data-icon="arrow-l" data-rel="back">Back</a>
+      <h1>Details</h1>
+    </header>
+    
+    <div class="detail-container"></div>
+  </div>
 </body>
 </html>
