@@ -1,7 +1,8 @@
 ( function( $ ) {
   
   /** A global private variable to keep the current data.*/
-  var _data;
+  var _data
+    , _currentSession;
   
   //Bind to the BC init event, which tells us that our DOM and device is ready to be interacted with.
   $( bc ).bind( "init", init );
@@ -35,27 +36,42 @@
   function registerEventListeners() {
     //Register as a delegate since the HTML is built dynamically.
     $( "body" ).delegate( "li", "tap", handleListTap );
+    
+    //Register as a delegate since the HTML is built dynamically.
+    $( "#details > button").bind( "tap", checkin );
   }
   
   /**
    * Handles the list tap by populating the details page and transitioning to it.
    */
   function handleListTap( evt ) {
-    var detailData
-      , htmlSnippet;
+    var htmlSnippet;
     
     //Get the data for the presentation.
-    detailData =  _data[ $( evt.currentTarget ).index() ];
+    _currentSession =  _data[ $( evt.currentTarget ).index() ];
     
     //Create the HTML markup using the templates.
-    htmlSnippet = Mark.up( bc.templates.scheduleDetailPage, detailData );
+    htmlSnippet = Mark.up( bc.templates.scheduleDetailPage, _currentSession );
     
     //Set the inner HTMl of the details container.
     $( ".detail-container" ).html( htmlSnippet );
     
-    //Transition to the new page.
-    //$.mobile.changePage( $( "#details" ) );
   }
   
+  /**
+   * Persist this session to the list of checkins.
+   */
+  function checkin( evt ) {
+
+    //Look up the array of session for cache.  App Cloud allows you to persist values across startup.  If we have a miss then null is returned.
+    var sessions = bc.core.cache( "sessions" ) || [];
+    
+    //Push the new sessionID into attended sessions and cache it.
+    bc.core.cache( "session", sessions.push( _currentSession ) );
+    
+    //vibrate the phone to let them know we did it :)
+    bc.device.vibrate();
+  } 
+   
 })( jQuery );
 

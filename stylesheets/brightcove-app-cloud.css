@@ -1,0 +1,111 @@
+/***************************************
+ * Default page setup
+ **************************************/
+html, body, h1, h2, h3, h4, h5, h6, div, ul, li, p, a{ margin: 0px; padding: 0px; }
+
+html { width: 100%; height: 100%; }
+
+a { text-decoration: none;}
+/* Page CSS */
+body { margin: 0px; padding: 0px; -webkit-text-size-adjust: none; overflow-x: hidden; font-family: Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; }
+
+/***************************************
+ * Transitions
+ **************************************/
+.scroller { -webkit-box-flex: 1; width:100%; overflow: hidden; position: relative; }
+.page { display: block; overflow: hidden; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; background-color: #ffffff; }
+.page-transition { display: block; z-index: 5;}
+.page-active { z-index: 10; }
+
+/** This needs to override the above display to work properly. (unknown) */
+.page { display: -webkit-box; -webkit-box-orient: vertical; -webkit-transform: translate3d(0, 0, 0); background-color: #ffffff;}
+
+/*.slide-left-out { z-index: 10; -webkit-transform: translate3d(-100%, 0, 0); -webkit-animation-name: slideouttoleft; } */
+.slide-left-out { z-index: 10; -webkit-transition: -webkit-transform 300ms ease-in-out; -webkit-transform: translate3d(-100%, 0, 0); }
+
+/*.slide-right-out { z-index: 10; -webkit-transform: translate3d(100%, 0, 0); -webkit-animation-name: slideouttoright; }*/
+.slide-right-out { z-index: 10; -webkit-transition: -webkit-transform 300ms ease-in-out; -webkit-transform: translate3d(100%, 0, 0); }
+
+/** Taken from JQ touch and JQM */
+@-webkit-keyframes slideinfromright {
+    from { -webkit-transform: translate3d(100%, 0, 0); }
+    to { -webkit-transform: translate3d(0, 0, 0); }
+}
+
+@-webkit-keyframes slideinfromleft {
+    from { -webkit-transform: translate3d(-100%, 0, 0); }
+    to { -webkit-transform: translate3d(0, 0, 0); }
+}
+
+@-webkit-keyframes slideouttoleft {
+    from { -webkit-transform: translate3d(0, 0, 0); }
+    to { -webkit-transform: translate3d(-100%, 0, 0); }
+}
+
+@-webkit-keyframes slideouttoright {
+    from { -webkit-transform: translate3d(0, 0, 0); }
+    to { -webkit-transform: translate3d(100%, 0, 0); }
+}
+
+ /*******************************************
+  * Spinner
+  ******************************************/
+ .spinner { width: 50px; height: 50px; z-index: 100; position: absolute; top: 50%; left: 50%; margin-left: -25px; margin-top: -25px; }
+
+ .spinner div { width: 12%; height: 26%; background: #000; position: absolute; left: 44.5%; top: 37%; opacity: 0; -webkit-border-radius: 50px; -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2); -webkit-animation: fade 1s linear infinite;}
+
+ .spinner div.bar1 { -webkit-transform:rotate(0deg) translate(0, -142%); -webkit-animation-delay: 0s; }
+
+ .spinner div.bar2 { -webkit-transform:rotate(30deg) translate(0, -142%); -webkit-animation-delay: -0.9167s; }
+
+ .spinner div.bar3 { -webkit-transform:rotate(60deg) translate(0, -142%); -webkit-animation-delay: -0.8334s; }
+
+ .spinner div.bar4 { -webkit-transform:rotate(90deg) translate(0, -142%); -webkit-animation-delay: -0.75s; }
+
+ .spinner div.bar5 { -webkit-transform:rotate(120deg) translate(0, -142%); -webkit-animation-delay: -0.667s; }
+
+ .spinner div.bar6 { -webkit-transform:rotate(150deg) translate(0, -142%); -webkit-animation-delay: -0.5833s; }
+
+ .spinner div.bar7 { -webkit-transform:rotate(180deg) translate(0, -142%); -webkit-animation-delay: -0.5s; }
+
+ .spinner div.bar8 { -webkit-transform:rotate(210deg) translate(0, -142%); -webkit-animation-delay: -0.41667s; }
+
+ .spinner div.bar9 { -webkit-transform:rotate(240deg) translate(0, -142%); -webkit-animation-delay: -0.333s; }
+
+ .spinner div.bar10 { -webkit-transform:rotate(270deg) translate(0, -142%); -webkit-animation-delay: -0.25s; }
+
+ .spinner div.bar11 { -webkit-transform:rotate(300deg) translate(0, -142%); -webkit-animation-delay: -0.1667s; }
+
+ .spinner div.bar12 { -webkit-transform:rotate(330deg) translate(0, -142%); -webkit-animation-delay: -0.0833ss; }
+ 
+ /** If we are on android then we have a different loader since the -webkit-animation-delay does not work correctly. */
+ .spinner.android div { display: none; }
+
+ .spinner.android { -webkit-border-radius: 5px; background-color: #ffffff; background-repeat: no-repeat; background-position: center; background-image: url(data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==); }
+ 
+ @-webkit-keyframes fade {
+   from {opacity: 1;}
+   to {opacity: 0.25;}
+ }
+
+@-webkit-keyframes vibrate {
+  0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+  10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+  30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+  40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+  50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+  70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+  80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+  90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+  100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.vibrate {
+  -webkit-animation-name: vibrate;
+  -webkit-animation-duration: 0.8s;
+  -webkit-transform-origin:50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
