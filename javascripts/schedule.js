@@ -31,7 +31,6 @@
    * Update the DOM with new HTML generated from the data.
    */
   function render( data ) {
-    console.log( data );
     var html = "";
     
     //store the data for future use
@@ -60,7 +59,7 @@
     var htmlSnippet;
     
     //Get the data for the presentation.
-    _currentSession =  _data[ $( evt.currentTarget ).index() ];
+    _currentSession =  _data[ $( evt.currentTarget ).index( ".schedule-list" ) ];
     
     //Create the HTML markup using the templates.
     htmlSnippet = Mark.up( bc.templates.scheduleDetailPage, _currentSession );
