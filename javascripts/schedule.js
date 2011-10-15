@@ -53,8 +53,6 @@
     //Set the inner HTMl of the details container.
     $( ".detail-container" ).html( htmlSnippet );
     
-    //Transition to the new page.
-    //$.mobile.changePage( $( "#details" ) );
   }
   
 })( jQuery );
