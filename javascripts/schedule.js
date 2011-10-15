@@ -2,7 +2,8 @@
   
   /** A global private variable to keep the current data.*/
   var _data
-    , _currentSession;
+    , _currentSession
+    , _times = {};
   
   //Bind to the BC init event, which tells us that our DOM and device is ready to be interacted with.
   $( bc ).bind( "init", init );
@@ -14,6 +15,16 @@
     
     //Setup any of event listeners that we need.
     registerEventListeners();
+    
+    //Custom pipe
+    if( Mark && Mark.pipes ) {
+      Mark.pipes.newTime = function( str ) {
+        if( _times[str] === undefined ) {
+          return _times[str] = true;
+        }
+        return false;
+      }
+    }
   }
   
   /**
