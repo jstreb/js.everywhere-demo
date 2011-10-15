@@ -2,7 +2,7 @@
     "name"        : "Schedule"
   , "description" : "A template for the js.everywhere conference."
   , "version"     : "1.0"
-  , "devices"     : [ "iPhone, Android" ]
+  , "devices"     : [ "iPhone", "Android" ]
   , "platformConfig":{
         "android":{
            "nativeNavigation":"true"
@@ -15,6 +15,10 @@
       { "navigationTitle" : "Schedule"
       , "navigationIcon"  : "images/icons/schedule.png"
       , "uri"             : "html/schedule.html"
+      }
+    , { "navigationTitle" : "Photos"
+      , "navigationIcon"  : "images/icons/photo.png"
+      , "uri"             : "html/photo.html"
       }
     ]
 }
