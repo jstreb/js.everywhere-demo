@@ -20,6 +20,7 @@
    * Update the DOM with new HTML generated from the data.
    */
   function render( data ) {
+    console.log( data );
     var html = "";
     
     //store the data for future use
