@@ -16,10 +16,25 @@
             border: 1px solid #CCC;
         }
     </style>
-
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script>
         var url = location.href.replace(/\w+\.html/, "manifest.json");
         var src = "http://qrcode.kaywa.com/img.php?s=8&d=" + url;
+        
+        $( document ).ready( function() {
+          var bitlyAPI =  "http://api.bitly.com/v3/shorten?login=jstreb&apiKey=R_0bb128d1604904c94f970edffc6b7a8a&longUrl=" + encodeURI( url ) + "&format=json"
+          $.ajax( 
+            { url: bitlyAPI
+            , success: success
+            , dataType: "jsonp"
+            }
+          );
+          
+          function success( results ) {
+            $( "#short-url" ).html( results.data.url );
+          }
+        });
     </script>
 </head>
 
@@ -29,11 +44,10 @@
 
 <div class="qr">
     <script>document.write('<img src="' + src + '" width="344" height="344"/><br>');</script>
-
     <small>From <a href="http://qrcode.kaywa.com/">http://qrcode.kaywa.com/</a></small>
 </div>
 
-<p>Note: The URL to your manifest file should be a network address, not "localhost."</p>
+<h1 id="short-url"></h1>
 
 </body>
 </html>
