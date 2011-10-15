@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="../stylesheets/jquery.mobile-1.0rc1.min.css" />
+    <style>
+      .ui-page {
+        text-align: center;
+      }
+      
+      img {
+        width: 210px;
+        height: 279px;
+        margin: 20px auto 10px auto;
+      }
+    </style>
+    <title>Schedule</title>
+    <script type="text/javascript" src="../javascripts/app-cloud-sdk.js"></script>
+    <script type="text/javascript" src="../javascripts/jquery.mobile-1.0rc1.min.js"></script>
+    <script>
+      $( bc ).bind( "init", function() {
+        
+        $( "#take-photo" ).bind( "tap", handleTakePhoto );
+        
+        function handleTakePhoto( evt ) {
+          bc.device.takePhoto( success, error );
+
+          function success( data ) {
+            $( "img" ).attr( "src", data );
+          }
+
+          function error( error ) {
+            alert( "bad things happened: " + error.errorMessage );
+            $( "img" ).attr( "src", "../images/nope.jpg" );
+          }
+          
+        }
+        
+      });
+    </script>
+  </head>
+<body>
+  
+  <!-- The home page for our template.  A data-role="page" is what tell jQM that this is a div is to be treated as a "page"-->
+  <div data-role="page" id="home">
+    <header data-role="header">
+      <h1>Photos</h1>
+    </header>
+    <img src="../images/place-holder.png" alt="placeholder" />
+    <button id="take-photo" data-role="button">Take Photo</button>
+  </div>
+
+</body>
+</html>

@@ -37,7 +37,7 @@
     //Register as a delegate since the HTML is built dynamically.
     $( "body" ).delegate( "li", "tap", handleListTap );
     
-    //Register as a delegate since the HTML is built dynamically.
+    //Although jQM changes the button to span it copies over the event listeners...cool.
     $( "#details > button").bind( "tap", checkin );
   }
   
